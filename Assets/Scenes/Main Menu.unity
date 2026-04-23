@@ -170,9 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Option_Esc
   uiOption: {fileID: 1523478592}
   uiESC: {fileID: 0}
-  Music_Vol: {fileID: 1279237680}
-  SFX_Vol: {fileID: 2131673680}
-  mainAuio: {fileID: 24100000, guid: 93ec545230294cb45bd2c2ef6308e28e, type: 2}
+  MusicVol: {fileID: 1279237680}
+  SfxVol: {fileID: 2131673680}
+  mainAuio: {fileID: 24100000, guid: 55f7a4798ca0e0f47b65f56557f6ecbd, type: 2}
 --- !u!1 &106650774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,7 +1044,7 @@ AudioSource:
   m_GameObject: {fileID: 835487393}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 1633147178455496272, guid: 93ec545230294cb45bd2c2ef6308e28e, type: 2}
+  OutputAudioMixerGroup: {fileID: -4339090424614383315, guid: 55f7a4798ca0e0f47b65f56557f6ecbd, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 323d545c5b04aff4586f5dba9b64501c, type: 3}
   m_PlayOnAwake: 1
@@ -1565,6 +1565,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2203198750570643086, guid: 1c84ece7a6affc44282d0dcbc782e225, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203198750570643086, guid: 1c84ece7a6affc44282d0dcbc782e225, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203198750570643086, guid: 1c84ece7a6affc44282d0dcbc782e225, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 65886168}
@@ -1575,6 +1583,10 @@ PrefabInstance:
     - target: {fileID: 2203198750570643086, guid: 1c84ece7a6affc44282d0dcbc782e225, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Option_Esc, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2964887305130479764, guid: 1c84ece7a6affc44282d0dcbc782e225, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 2964887305130479764, guid: 1c84ece7a6affc44282d0dcbc782e225, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target

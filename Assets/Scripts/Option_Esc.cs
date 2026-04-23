@@ -9,9 +9,24 @@ public class Option_Esc : MonoBehaviour
     public GameObject uiOption;
     public GameObject uiESC;
 
-    public Slider Music_Vol;
-    public Slider SFX_Vol;
+    public Slider MusicVol;
+    public Slider SfxVol;
     public AudioMixer mainAuio;
+
+    void Start()
+    {
+        float music = PlayerPrefs.GetFloat("MusicVol", 1f);
+        float sfx = PlayerPrefs.GetFloat("SfxVol", 1f);
+
+        MusicVol.value = music;
+        SfxVol.value = sfx;
+
+        float musicdB = Mathf.Log10(Mathf.Max(0.0001f, music)) * 20;
+        float sfxdB = Mathf.Log10(Mathf.Max(0.0001f, sfx)) * 20;
+
+        mainAuio.SetFloat("MusicVol", musicdB);
+        mainAuio.SetFloat("SfxVol", sfxdB);
+    }
 
     void Update()
     {
@@ -31,21 +46,21 @@ public class Option_Esc : MonoBehaviour
 
     public void ChangeMusicVolume()
     {
-        float value = Music_Vol.value;
+        float value = MusicVol.value;
 
-        if (value <= 0.001f)
-        {
-            mainAuio.SetFloat("MusicVol", -80f); // mute จริง
-            return;
-        }
-
-        float dB = Mathf.Log10(value) * 20;
+        float dB = Mathf.Log10(Mathf.Max(0.0001f, value)) * 20;
         mainAuio.SetFloat("MusicVol", dB);
+
+        PlayerPrefs.SetFloat("MusicVol", value);
     }
     public void ChangeSFXVolume()
     {
-        float dB = Mathf.Log10(Mathf.Max(0.0001f, SFX_Vol.value)) * 20;
+        float value = SfxVol.value;
+
+        float dB = Mathf.Log10(Mathf.Max(0.0001f, value)) * 20;
         mainAuio.SetFloat("SfxVol", dB);
+
+        PlayerPrefs.SetFloat("SfxVol", value);
     }
 
     public void ESCOpen()
@@ -67,6 +82,6 @@ public class Option_Esc : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Main Menu");
     }
 }

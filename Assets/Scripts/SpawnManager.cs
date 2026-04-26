@@ -3,7 +3,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject obstaclePrefab;
-    //Exam01
+
     public GameObject[] obstaclePrefabs;
     public Vector3 spawnPos = new(25, 0, 0);
 
@@ -18,13 +18,11 @@ public class SpawnManager : MonoBehaviour
         // Instantiate(obstaclePrefab, new Vector3(25, 0, 0), obstaclePrefab.transform.rotation);
 
         InvokeRepeating(nameof(SpawnObstacle), startDelay, repeatRate);
-        //Exam01
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     void SpawnObstacle()
     {
-        //Exam01
         if (playerController.gameOver) 
         { 
             return;

@@ -13,6 +13,18 @@ public class Option_Esc : MonoBehaviour
     public Slider SfxVol;
     public AudioMixer mainAuio;
 
+    public Button backButton;
+
+    private void Awake()
+    {
+        backButton.onClick.AddListener(() =>
+        {
+            Time.timeScale = 1f;
+            uiOption.SetActive(false);
+            uiESC.SetActive(false);
+        });
+    }
+
     void Start()
     {
         float music = PlayerPrefs.GetFloat("MusicVol", 1f);
@@ -36,12 +48,6 @@ public class Option_Esc : MonoBehaviour
     public void Option()
     {
         uiOption.SetActive(true);
-    }
-
-    public void Back()
-    {
-        Time.timeScale = 1f;
-        uiOption.SetActive(false);
     }
 
     public void ChangeMusicVolume()
@@ -71,13 +77,6 @@ public class Option_Esc : MonoBehaviour
             uiESC.SetActive(true);
         }
 
-    }
-
-    public void ESCBack()
-    {
-        Time.timeScale = 1f;
-        uiESC.SetActive(false);
-        
     }
 
     public void BackToMainMenu()

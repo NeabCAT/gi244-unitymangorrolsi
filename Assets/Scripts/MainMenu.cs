@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,8 +17,12 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator QuitRoutine()
     {
-        yield return new WaitForSecondsRealtime(1f);
-        Debug.Log("Quit");
+        yield return new WaitForSecondsRealtime(0.5f);
+
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
         Application.Quit();
+#endif
     }
 }

@@ -169,10 +169,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Option_Esc
   uiOption: {fileID: 1523478592}
-  uiESC: {fileID: 0}
+  uiESC: {fileID: 1523478592}
   MusicVol: {fileID: 1279237680}
   SfxVol: {fileID: 2131673680}
   mainAuio: {fileID: 24100000, guid: 55f7a4798ca0e0f47b65f56557f6ecbd, type: 2}
+  backButton: {fileID: 1523478593}
 --- !u!1 &106650774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,10 +1624,10 @@ PrefabInstance:
     - target: {fileID: 4868658255720158647, guid: 1c84ece7a6affc44282d0dcbc782e225, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 65886168}
+      objectReference: {fileID: 0}
     - target: {fileID: 4868658255720158647, guid: 1c84ece7a6affc44282d0dcbc782e225, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Back
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4868658255720158647, guid: 1c84ece7a6affc44282d0dcbc782e225, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1784,6 +1785,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5988445819210444843, guid: 1c84ece7a6affc44282d0dcbc782e225, type: 3}
   m_PrefabInstance: {fileID: 1523478590}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1523478593 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4868658255720158647, guid: 1c84ece7a6affc44282d0dcbc782e225, type: 3}
+  m_PrefabInstance: {fileID: 1523478590}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1851282387
 GameObject:
   m_ObjectHideFlags: 0

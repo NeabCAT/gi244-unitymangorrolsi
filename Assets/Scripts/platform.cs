@@ -5,23 +5,27 @@ public class platform : MonoBehaviour
 {
     private PlayerController playerController;
 
-    public float speed = 5f;
-    private float leftBound = -15;
+    public float speed = 2f;
 
     public GameObject platFromer;
-    public GameObject spawnObstacles;
+    private SpawnManager spawnManager;
+
     private Vector3 startPos;
+    private Vector3 originalSpawnPos;
 
+    public GameObject cam;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        spawnManager = FindFirstObjectByType<SpawnManager>();
+
         startPos = transform.position;
+        originalSpawnPos = spawnManager.spawnPos;
+
         StartCoroutine(PlatFrom());
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!platFromer.activeSelf) return;
@@ -30,26 +34,30 @@ public class platform : MonoBehaviour
         {
             transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
-
-        if (!playerController.gameOver && playerController.isDash)
-        {
-            transform.Translate(Vector3.left * Time.deltaTime * speed * 2);
-        }
     }
 
     IEnumerator PlatFrom()
     {
         yield return new WaitForSeconds(5);
 
-        while (true)
+        while (!playerController.gameOver)
         {
             transform.position = startPos;
             platFromer.SetActive(true);
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(30);
 
             platFromer.SetActive(false);
-            yield return new WaitForSeconds(20);
+            spawnManager.spawnPos = originalSpawnPos;
+            yield return new WaitForSeconds(30);
         }
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            spawnManager.spawnPos = playerController.transform.position + new Vector3(25, 2.5f, 0);
+            cam.transform.position = new Vector3(8, 9.5f, -15);
+        }
     }
 }

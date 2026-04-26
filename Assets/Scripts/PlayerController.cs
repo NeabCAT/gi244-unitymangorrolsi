@@ -3,9 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    //Exam04
     public int hp = 3;
-    //Exam02
+
     public int jumpCount;
     public float jumpForce;
     public float gravityModifier;
@@ -17,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private InputAction jumpAction;
-    //Exam03
+
     private InputAction dashAction;
     private bool isOnGround = true;
 
@@ -25,8 +24,9 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
 
     public bool gameOver = false;
-    //Exam03
     public bool isDash = false;
+
+    public GameObject cam;
 
     void Awake()
     {
@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
         Physics.gravity *= gravityModifier;
 
         jumpAction = InputSystem.actions.FindAction("Jump");
-        //Exam03
         dashAction = InputSystem.actions.FindAction("Sprint");
 
 
@@ -51,11 +50,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Exam02
         if (jumpAction.triggered && jumpCount <2 && !gameOver)
         {
             rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
-            //Exam02
+
             jumpCount++;
             isOnGround = false;
             playerAnim.SetTrigger("Jump_trig");
@@ -63,7 +61,6 @@ public class PlayerController : MonoBehaviour
             playerAudio.PlayOneShot(jumpSfx);
         }
 
-        //Exam03
         if (dashAction.IsPressed())
         {
             isDash = true;
@@ -79,10 +76,19 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
-            //Exam02
             jumpCount = 0;
             dirtParticle.Play();
+
+            cam.transform.position = new Vector3(8, 4, -15);
         }
+
+        else if (collision.gameObject.CompareTag("Platformer"))
+        {
+            isOnGround = true;
+            jumpCount = 1;
+            dirtParticle.Play();
+        }
+
         else if (collision.gameObject.CompareTag("Obstacle")) //Exam04
         {
 

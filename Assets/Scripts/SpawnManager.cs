@@ -12,7 +12,7 @@ public class SpawnManager : MonoBehaviour
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         InvokeRepeating(nameof(SpawnObstacle), startDelay, repeatRate);
-        InvokeRepeating(nameof(SpawnCoin), startDelay, repeatRate);
+        InvokeRepeating(nameof(Spawn), startDelay, repeatRate);
     }
 
     private void SpawnObstacle()
@@ -33,6 +33,33 @@ public class SpawnManager : MonoBehaviour
         if (playerController.gameOver) return;
 
         var coin = CoinPool.staticInstance.Acquire();
-        coin.transform.position = spawnPos + new Vector3(-coinOffsetX, (float)0.8, 0);
+        coin.transform.position = spawnPos + new Vector3(-coinOffsetX, 0.8f, 0);
+    }
+
+    private void SpawnItem()
+    {
+        var prefabs = ItemPool.Instance.itemPrefabs;
+        if (prefabs.Length == 0) return;
+
+        int randomIndex = Random.Range(0, prefabs.Length);
+
+        var item = ItemPool.Instance.Acquire(prefabs[randomIndex]);
+        item.transform.position = spawnPos + new Vector3(-coinOffsetX, 0.8f, 0);
+    }
+
+    void Spawn()
+    {
+        if (playerController.gameOver) return;
+
+        int rand = Random.Range(0, 100);
+
+        if (rand < 80)
+        {
+            SpawnCoin();
+        }
+        else
+        {
+            SpawnItem();
+        }
     }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Physics.gravity *= gravityModifier;
+        Physics.gravity = new Vector3(0, -9.81f, 0) * gravityModifier;
 
         jumpAction = InputSystem.actions.FindAction("Jump");
         dashAction = InputSystem.actions.FindAction("Sprint");
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (jumpAction.triggered && jumpCount <2 && !gameOver)
+        if (jumpAction.triggered && jumpCount < 2 && !gameOver)
         {
             rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
 
@@ -89,12 +89,11 @@ public class PlayerController : MonoBehaviour
             dirtParticle.Play();
         }
 
-        else if (collision.gameObject.CompareTag("Obstacle")) //Exam04
+        else if (collision.gameObject.CompareTag("Obstacle"))
         {
 
             //explosionParticle.Play();
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
-            Destroy(collision.gameObject);
             playerAudio.PlayOneShot(crashSfx);
             hp--;
 
@@ -105,8 +104,9 @@ public class PlayerController : MonoBehaviour
                 playerAnim.SetBool("Death_b", true);
                 playerAnim.SetInteger("DeathType_int", 1);
                 dirtParticle.Stop();
+
+                GameManager.Instance.ShowGameOver();
             }
         }
     }
-
 }

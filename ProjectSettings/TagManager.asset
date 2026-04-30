@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - Platformer
   - Coin
+  - FlipCame
   layers:
   - Default
   - TransparentFX

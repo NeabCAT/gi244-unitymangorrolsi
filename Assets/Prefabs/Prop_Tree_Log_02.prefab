@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8133806631233155653}
   - component: {fileID: 5001253190836472099}
   - component: {fileID: 518417014759378814}
+  - component: {fileID: -6897813246025537227}
   m_Layer: 0
   m_Name: Prop_Tree_Log_02
   m_TagString: Obstacle
@@ -154,3 +155,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveLeft
   speed: 10
+--- !u!114 &-6897813246025537227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335197268401802557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a96d8708dcf44c43abc4e89695f416c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstatcle

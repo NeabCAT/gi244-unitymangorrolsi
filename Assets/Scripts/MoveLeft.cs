@@ -3,6 +3,7 @@ using UnityEngine;
 public class MoveLeft : MonoBehaviour
 {
     public float speed = 10f;
+    public static float speedBoost = 1f;
 
     private float leftBound = -15;
 
@@ -21,10 +22,12 @@ public class MoveLeft : MonoBehaviour
             transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
         }
 
-        if (!playerController.gameOver && playerController.isDash)
-        {
-            transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
-        }
+        if (playerController.gameOver) return;
+
+        transform.Translate(
+            Vector3.left * Time.deltaTime * speed * speedBoost,
+            Space.World
+        );
 
         if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle"))
         {

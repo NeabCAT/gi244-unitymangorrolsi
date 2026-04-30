@@ -18,14 +18,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private InputAction jumpAction;
 
-    private InputAction dashAction;
+    //private InputAction dashAction;
     private bool isOnGround = true;
 
     private Animator playerAnim;
     private AudioSource playerAudio;
 
     public bool gameOver = false;
-    public bool isDash = false;
+    public bool noDamage = false;
+    //public bool isDash = false;
 
     public GameObject cam;
 
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour
         Physics.gravity = new Vector3(0, -9.81f, 0) * gravityModifier;
 
         jumpAction = InputSystem.actions.FindAction("Jump");
-        dashAction = InputSystem.actions.FindAction("Sprint");
+        //dashAction = InputSystem.actions.FindAction("Sprint");
 
 
         gameOver = false;
@@ -62,14 +63,14 @@ public class PlayerController : MonoBehaviour
             playerAudio.PlayOneShot(jumpSfx);
         }
 
-        if (dashAction.IsPressed())
-        {
-            isDash = true;
-        }
-        else
-        {
-            isDash = false;
-        }
+        //if (dashAction.IsPressed())
+        //{
+        //    isDash = true;
+        //}
+        //else
+        //{
+        //    isDash = false;
+        //}
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -92,11 +93,15 @@ public class PlayerController : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
-
             //explosionParticle.Play();
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             playerAudio.PlayOneShot(crashSfx);
-            hp--;
+
+            if (!noDamage)
+            {
+                hp--;
+            }
+            
 
             if (hp <= 0)
             {

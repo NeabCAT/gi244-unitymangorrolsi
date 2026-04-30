@@ -18,17 +18,22 @@ public class MoveLeft : MonoBehaviour
     {
         if (!playerController.gameOver)
         {
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
+            transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
         }
 
         if (!playerController.gameOver && playerController.isDash)
         {
-            transform.Translate(Vector3.left * Time.deltaTime * speed * 2);
+            transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
         }
 
         if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle"))
         {
-            Destroy(gameObject);
+            ObstaclePool.staticInstance.Return(this.gameObject);
+        }
+
+        if (transform.position.x < leftBound && gameObject.CompareTag("Coin"))
+        {
+            CoinPool.staticInstance.Return(this.gameObject);
         }
     }
 }

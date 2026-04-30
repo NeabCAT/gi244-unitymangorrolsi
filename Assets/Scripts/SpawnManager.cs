@@ -2,40 +2,37 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject obstaclePrefab;
-
-    public GameObject[] obstaclePrefabs;
     public Vector3 spawnPos = new(25, 0, 0);
-
+    public float coinOffsetX = 5f;
     public float startDelay = 2;
     public float repeatRate = 2;
-
     private PlayerController playerController;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Instantiate(obstaclePrefab, new Vector3(25, 0, 0), obstaclePrefab.transform.rotation);
-
-        InvokeRepeating(nameof(SpawnObstacle), startDelay, repeatRate);
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        InvokeRepeating(nameof(SpawnObstacle), startDelay, repeatRate);
+        InvokeRepeating(nameof(SpawnCoin), startDelay, repeatRate);
     }
 
-    void SpawnObstacle()
+    private void SpawnObstacle()
     {
-        if (playerController.gameOver) 
-        { 
-            return;
-        }
+        if (playerController.gameOver) return;
 
-        if (obstaclePrefabs.Length > 0) 
-        { 
-            int randomObstacles = Random.Range(0, obstaclePrefabs.Length);
-            if (obstaclePrefabs[randomObstacles])
-            {
-                Instantiate(obstaclePrefabs[randomObstacles], spawnPos, obstaclePrefabs[randomObstacles].transform.rotation);
-            }
-        }
+        var prefabs = ObstaclePool.staticInstance.obstaclePrefabs;
+        if (prefabs.Length == 0) return;
 
+        int randomIndex = Random.Range(0, prefabs.Length);
+        var go = ObstaclePool.staticInstance.Acquire(prefabs[randomIndex]);
+        go.transform.position = spawnPos;
+        go.transform.rotation = prefabs[randomIndex].transform.rotation;
+    }
+
+    private void SpawnCoin()
+    {
+        if (playerController.gameOver) return;
+
+        var coin = CoinPool.staticInstance.Acquire();
+        coin.transform.position = spawnPos + new Vector3(-coinOffsetX, (float)0.8, 0);
     }
 }

@@ -15,7 +15,7 @@ public class HealItem : MonoBehaviour
                 player.hp += healAmount;
                 if (player.hp > maxHP) player.hp = maxHP;
             }
-            gameObject.SetActive(false);
+            ItemPool.Instance.Return(gameObject);
         }
     }
 }

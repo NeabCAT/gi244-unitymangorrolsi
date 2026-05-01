@@ -1,55 +1,101 @@
-using System.Collections;
+﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class platform : MonoBehaviour
 {
-    private PlayerController playerController;
-
-    public float speed = 2f;
-
-    public GameObject platFromer;
-    private SpawnManager spawnManager;
-
-    private Vector3 startPos;
-    private Vector3 originalSpawnPos;
-
+    [Header("Settings")]
+    public float speed = 5f;
+    public GameObject platModel;
     public GameObject cam;
 
-    void Start()
+    [Header("Positions")]
+    public Vector3 normalCamPos = new Vector3(8, 4, -15);
+    public Vector3 highCamPos = new Vector3(8, 9.5f, -15);
+
+    private PlayerController playerController;
+    private SpawnManager spawnManager;
+    private Vector3 startPos;
+    private Vector3 originalSpawnPos;
+    private Coroutine loopRoutine;
+
+    void Awake()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         spawnManager = FindFirstObjectByType<SpawnManager>();
-
         startPos = transform.position;
-        originalSpawnPos = spawnManager.spawnPos;
+    }
 
-        StartCoroutine(PlatFrom());
+    void Start()
+    {
+        originalSpawnPos = spawnManager.spawnPos;
+        DeactivatePlatformState();
+        RestartSystem(10f);
     }
 
     void Update()
     {
-        if (!platFromer.activeSelf) return;
-
-        if (!playerController.gameOver)
+        if (platModel.activeSelf && !playerController.gameOver)
         {
             transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
     }
 
-    IEnumerator PlatFrom()
+    public void RestartSystem(float firstDelay = 0f)
     {
-        yield return new WaitForSeconds(5);
+        if (loopRoutine != null) StopCoroutine(loopRoutine);
+        loopRoutine = StartCoroutine(PlatformLogicLoop(firstDelay));
+    }
 
-        while (!playerController.gameOver)
+    IEnumerator PlatformLogicLoop(float firstDelay)
+    {
+        if (firstDelay > 0) yield return new WaitForSeconds(firstDelay);
+
+        while (true)
         {
-            transform.position = startPos;
-            platFromer.SetActive(true);
-            yield return new WaitForSeconds(30);
+            if (playerController.gameOver)
+            {
+                yield return null;
+                continue;
+            }
 
-            platFromer.SetActive(false);
-            spawnManager.spawnPos = originalSpawnPos;
-            yield return new WaitForSeconds(30);
+            ActivatePlatformState();
+
+            float timer = 0;
+            while (timer < 30f && !playerController.gameOver)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            DeactivatePlatformState();
+
+            timer = 0;
+            while (timer < 30f && !playerController.gameOver)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
         }
+    }
+
+    void ActivatePlatformState()
+    {
+        transform.position = startPos;
+        platModel.SetActive(true);
+
+        Wall[] walls = GetComponentsInChildren<Wall>(true);
+        foreach (Wall w in walls)
+        {
+            w.ResetWall();
+        }
+    }
+
+    void DeactivatePlatformState()
+    {
+        platModel.SetActive(false);
+        spawnManager.spawnPos = originalSpawnPos;
+        cam.transform.position = normalCamPos;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -57,7 +103,12 @@ public class platform : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             spawnManager.spawnPos = playerController.transform.position + new Vector3(25, 2.5f, 0);
-            cam.transform.position = new Vector3(8, 9.5f, -15);
+            cam.transform.position = highCamPos;
         }
+    }
+
+    public void OnPlayerHitWall()
+    {
+        RestartSystem(5f);
     }
 }

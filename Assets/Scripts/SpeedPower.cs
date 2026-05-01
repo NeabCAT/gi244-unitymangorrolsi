@@ -3,26 +3,25 @@ using UnityEngine;
 
 public class SpeedPower : MonoBehaviour
 {
-    private PlayerController player;
-
     void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
-        player = other.GetComponent<PlayerController>();
+        if (other.CompareTag("Player"))
+        {
+            PlayerController player = other.GetComponent<PlayerController>();
 
-        StartCoroutine(Boost());
-        GetComponent<Renderer>().enabled = false;
+            player.StartCoroutine(Boost(player));
+            ItemPool.Instance.Return(gameObject);
+        }
     }
 
-    IEnumerator Boost()
+    IEnumerator Boost(PlayerController player)
     {
-
         MoveLeft.speedBoost = 2f;
-        player.noDamage = true;
+        if (player) player.noDamage = true;
+
         yield return new WaitForSeconds(5);
 
         MoveLeft.speedBoost = 1f;
-        player.noDamage = false;
-        gameObject.SetActive(false);
+        if (player) player.noDamage = false;
     }
 }

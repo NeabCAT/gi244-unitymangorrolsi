@@ -4,6 +4,7 @@ using UnityEngine;
 public class Distance : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI distanceText;
+    [SerializeField] TextMeshProUGUI distanceTextEnd;
     [SerializeField] PlayerController player;
     private float totalDistance = 0f;
     private bool isGameOver = false;
@@ -34,5 +35,10 @@ public class Distance : MonoBehaviour
 
         totalDistance += Time.deltaTime * 10f;
         distanceText.text = "Distance " + totalDistance.ToString("F1") + " Meter";
+    }
+
+    public void Text()
+    {
+        distanceTextEnd.text = "Distance : " + totalDistance.ToString("F1") + " Meter";
     }
 }

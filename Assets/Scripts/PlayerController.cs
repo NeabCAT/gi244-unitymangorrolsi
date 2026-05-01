@@ -101,18 +101,21 @@ public class PlayerController : MonoBehaviour
             {
                 hp--;
             }
-            
+            Dead();
+        }
+    }
 
-            if (hp <= 0)
-            {
-                Debug.Log("Game Over!");
-                gameOver = true;
-                playerAnim.SetBool("Death_b", true);
-                playerAnim.SetInteger("DeathType_int", 1);
-                dirtParticle.Stop();
+    public void Dead()
+    {
+        if (hp <= 0)
+        {
+            Debug.Log("Game Over!");
+            gameOver = true;
+            playerAnim.SetBool("Death_b", true);
+            playerAnim.SetInteger("DeathType_int", 1);
+            dirtParticle.Stop();
 
-                GameManager.Instance.ShowGameOver();
-            }
+            GameManager.Instance.ShowGameOver();
         }
     }
 }

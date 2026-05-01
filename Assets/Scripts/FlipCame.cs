@@ -6,19 +6,24 @@ public class FlipCame : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
-        StartCoroutine(FlipRoutine(other));
-        GetComponent<Renderer>().enabled = false;
+        if (other.CompareTag("Player"))
+        {
+            var player = other.GetComponent<PlayerController>();
+
+            player.StartCoroutine(FlipEffect(player.cam.transform));
+
+            ItemPool.Instance.Return(gameObject);
+        }
     }
 
-    public IEnumerator FlipRoutine(Collider other)
+    IEnumerator FlipEffect(Transform cam)
     {
-        Transform cam = other.GetComponent<PlayerController>().cam.transform;
-        Quaternion startRot = cam.rotation;
-        cam.rotation = Quaternion.Euler(0, 0, 180f);
+        Quaternion startRot = cam.localRotation;
+        cam.localRotation = Quaternion.Euler(0, 0, 180f);
 
         yield return new WaitForSeconds(5f);
-        cam.rotation = startRot;
-        Destroy(gameObject);
+
+        if (cam != null)
+            cam.localRotation = startRot;
     }
 }

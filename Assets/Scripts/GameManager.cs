@@ -9,15 +9,19 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI textCoinScore;
     public TextMeshProUGUI textEndScore;
+    public TextMeshProUGUI textDistance;
     private int score;
 
     public Button retryButton;
     public Button mainMenuButton;
     public GameObject gameOverScreen;
 
+    private Distance distance;
+
     void Awake()
     {
         Instance = this;
+        distance = FindFirstObjectByType<Distance>();
 
         retryButton.onClick.AddListener(() =>
         {
@@ -38,8 +42,10 @@ public class GameManager : MonoBehaviour
 
     public void ShowGameOver()
     {
+        textDistance.gameObject.SetActive(false);
         gameOverScreen.SetActive(true);
         textCoinScore.gameObject.SetActive(false);
         textEndScore.text = $"Coin : {score}";
+        distance.Text();
     }
 }

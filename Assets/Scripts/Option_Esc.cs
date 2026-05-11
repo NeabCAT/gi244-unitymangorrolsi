@@ -14,14 +14,20 @@ public class Option_Esc : MonoBehaviour
     public AudioMixer mainAuio;
 
     public Button backButton;
+    public Button menuButton;
 
     private void Awake()
     {
         backButton.onClick.AddListener(() =>
         {
             Time.timeScale = 1f;
-            uiOption.SetActive(false);
             uiESC.SetActive(false);
+        });
+
+        menuButton.onClick.AddListener(() =>
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("Main Menu");
         });
     }
 
@@ -77,10 +83,5 @@ public class Option_Esc : MonoBehaviour
             uiESC.SetActive(true);
         }
 
-    }
-
-    public void BackToMainMenu()
-    {
-        SceneManager.LoadScene("Main Menu");
     }
 }

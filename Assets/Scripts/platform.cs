@@ -83,7 +83,6 @@ public class platform : MonoBehaviour
     {
         transform.position = startPos;
         platModel.SetActive(true);
-
         Wall[] walls = GetComponentsInChildren<Wall>(true);
         foreach (Wall w in walls)
         {
@@ -109,6 +108,7 @@ public class platform : MonoBehaviour
 
     public void OnPlayerHitWall()
     {
+        DeactivatePlatformState();
         RestartSystem(5f);
     }
 }

@@ -6,7 +6,7 @@ public class Distance : MonoBehaviour
     [SerializeField] TextMeshProUGUI distanceText;
     [SerializeField] TextMeshProUGUI distanceTextEnd;
     [SerializeField] PlayerController player;
-    private float totalDistance = 0f;
+    public float totalDistance = 0f;
     private bool isGameOver = false;
 
     void Start()
@@ -39,6 +39,6 @@ public class Distance : MonoBehaviour
 
     public void Text()
     {
-        distanceTextEnd.text = "Distance : " + totalDistance.ToString("F1") + " Meter";
+        distanceTextEnd.text = "Distance : " + totalDistance.ToString("F1") + " M";
     }
 }

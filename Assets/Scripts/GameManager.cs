@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI textCoinScore;
     public TextMeshProUGUI textEndScore;
     public TextMeshProUGUI textDistance;
+    public TextMeshProUGUI textBestCoin;
+    public TextMeshProUGUI textBestDistance;
+
     private int score;
 
     public Button retryButton;
@@ -47,5 +50,8 @@ public class GameManager : MonoBehaviour
         textCoinScore.gameObject.SetActive(false);
         textEndScore.text = $"Coin : {score}";
         distance.Text();
+        HighScore.Instance.Submit(score, distance.totalDistance);
+        textBestCoin.text = $"{HighScore.Instance.BestCoins}";
+        textBestDistance.text = $"{HighScore.Instance.BestDistance:F1} M ";
     }
 }

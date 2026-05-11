@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
     //public bool isDash = false;
 
     public GameObject cam;
+    public TextMeshProUGUI countdownText;
 
     void Awake()
     {

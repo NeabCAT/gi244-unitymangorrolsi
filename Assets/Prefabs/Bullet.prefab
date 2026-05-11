@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 6100373292346523844}
   - component: {fileID: 2255136696633989512}
   - component: {fileID: 676607034704012555}
-  - component: {fileID: 9199153585099151891}
   - component: {fileID: 2687927370274455499}
-  - component: {fileID: 2369681147257916696}
-  - component: {fileID: 847049445829478447}
+  - component: {fileID: 6580876519686392551}
+  - component: {fileID: 4644762542389115220}
+  - component: {fileID: 8897582915655368718}
   m_Layer: 7
-  m_Name: Heart
-  m_TagString: Heart
+  m_Name: Bullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2684888832664485838}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0056709694, y: -0.7070841, z: -0.7070841, w: 0.0056709703}
-  m_LocalPosition: {x: 24.05, y: 0.39, z: -0.37}
-  m_LocalScale: {x: 0.05640916, y: 0.0049275085, z: 0.05640916}
+  m_LocalRotation: {x: -0.7061378, y: 0.03700707, z: 0.03700707, w: 0.7061378}
+  m_LocalPosition: {x: 0.0000034988, y: -0.00000011921, z: 0.000033375}
+  m_LocalScale: {x: 0.05640916, y: 0.06631934, z: 0.05640916}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 270, y: 180, z: 0.91900635}
+  m_LocalEulerAnglesHint: {x: 270, y: 366, z: 0}
 --- !u!33 &2255136696633989512
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 958261cc7d712de498274ecc3d34d488, type: 2}
+  - {fileID: 2100000, guid: 2bc4d7963aeada94ca98e0919da0a4f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,33 +94,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &9199153585099151891
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684888832664485838}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2687927370274455499
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -142,7 +115,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 21.25, y: 9.1413, z: 19.9149}
   m_Center: {x: 0, y: 0.00055003166, z: 10.003751}
---- !u!114 &2369681147257916696
+--- !u!114 &6580876519686392551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,12 +124,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2684888832664485838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20b23ee9ceccf154c84299400e62e0c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ca445f77a45b0b41995d116a35d1d2f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealItem
-  healAmount: 1
-  maxHP: 3
---- !u!114 &847049445829478447
+  m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  attackPoint: 1
+--- !u!114 &4644762542389115220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,7 +137,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2684888832664485838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3deb3c3f12d4b4c47afac0cc51e7dd31, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ff72d933b9faad44b7a39a93ac5f9e2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MoveLeft
-  speed: 10
+  m_EditorClassIdentifier: Assembly-CSharp::BulletMoveRight
+  speed: 20
+--- !u!114 &8897582915655368718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2684888832664485838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51733b8ac6a690849847fe91668616f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletOutOfBound
+  rightBound: 50

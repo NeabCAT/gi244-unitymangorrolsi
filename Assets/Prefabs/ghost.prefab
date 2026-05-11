@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2684888832664485838
+--- !u!1 &4027753661313239480
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6100373292346523844}
-  - component: {fileID: 2255136696633989512}
-  - component: {fileID: 676607034704012555}
-  - component: {fileID: 9199153585099151891}
-  - component: {fileID: 2687927370274455499}
-  - component: {fileID: 2369681147257916696}
-  - component: {fileID: 847049445829478447}
-  m_Layer: 7
-  m_Name: Heart
-  m_TagString: Heart
+  - component: {fileID: 8336809876725458446}
+  - component: {fileID: 174981542414493237}
+  - component: {fileID: 4966757784557222246}
+  - component: {fileID: 3905933083895942540}
+  - component: {fileID: 5903497565760657360}
+  - component: {fileID: 1756484058430311004}
+  - component: {fileID: 3475401970255304681}
+  m_Layer: 0
+  m_Name: ghost
+  m_TagString: Ghost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6100373292346523844
+--- !u!4 &8336809876725458446
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684888832664485838}
+  m_GameObject: {fileID: 4027753661313239480}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0056709694, y: -0.7070841, z: -0.7070841, w: 0.0056709703}
-  m_LocalPosition: {x: 24.05, y: 0.39, z: -0.37}
-  m_LocalScale: {x: 0.05640916, y: 0.0049275085, z: 0.05640916}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.037, z: 0}
+  m_LocalScale: {x: 0.5, y: 1.4837, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 270, y: 180, z: 0.91900635}
---- !u!33 &2255136696633989512
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &174981542414493237
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684888832664485838}
-  m_Mesh: {fileID: -3676728085192693422, guid: 6fd71e65f7f7e7148b060d49c8482a5d, type: 3}
---- !u!23 &676607034704012555
+  m_GameObject: {fileID: 4027753661313239480}
+  m_Mesh: {fileID: 4300000, guid: 0398a1d1d554d19429b04a7c7413037a, type: 3}
+--- !u!23 &4966757784557222246
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684888832664485838}
+  m_GameObject: {fileID: 4027753661313239480}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 958261cc7d712de498274ecc3d34d488, type: 2}
+  - {fileID: 2100000, guid: af9d3101091f90d4db78a2097d5dcb84, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,7 +82,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -94,13 +94,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &9199153585099151891
+--- !u!54 &3905933083895942540
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684888832664485838}
+  m_GameObject: {fileID: 4027753661313239480}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
@@ -119,15 +119,15 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &2687927370274455499
+--- !u!65 &5903497565760657360
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684888832664485838}
+  m_GameObject: {fileID: 4027753661313239480}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -136,36 +136,36 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 21.25, y: 9.1413, z: 19.9149}
-  m_Center: {x: 0, y: 0.00055003166, z: 10.003751}
---- !u!114 &2369681147257916696
+  m_Size: {x: 2.3226004, y: 2.1209922, z: 2.3226004}
+  m_Center: {x: 0, y: 1.0604961, z: 0}
+--- !u!114 &1756484058430311004
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684888832664485838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20b23ee9ceccf154c84299400e62e0c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealItem
-  healAmount: 1
-  maxHP: 3
---- !u!114 &847049445829478447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684888832664485838}
+  m_GameObject: {fileID: 4027753661313239480}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3deb3c3f12d4b4c47afac0cc51e7dd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveLeft
-  speed: 10
+  speed: 3.5
+--- !u!114 &3475401970255304681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4027753661313239480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b1265f4f1ba1c40874e3fd7d8078fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostController
+  followSpeed: 8
+  yOffset: 0

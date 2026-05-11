@@ -16,6 +16,13 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSfx;
     public AudioClip crashSfx;
 
+    public AudioClip shootSfx;
+    public Transform firePoint;          
+    public float shootCooldown = 0.3f;
+
+    private float lastShootTime;
+    private InputAction shootAction;
+
     private Rigidbody rb;
     private InputAction jumpAction;
 
@@ -45,6 +52,7 @@ public class PlayerController : MonoBehaviour
         Physics.gravity = new Vector3(0, -9.81f, 0) * gravityModifier;
 
         jumpAction = InputSystem.actions.FindAction("Jump");
+        shootAction = InputSystem.actions.FindAction("Attack");
         //dashAction = InputSystem.actions.FindAction("Sprint");
 
 
@@ -73,7 +81,28 @@ public class PlayerController : MonoBehaviour
         //{
         //    isDash = false;
         //}
+
+        if (shootAction.triggered && !gameOver && Time.time >= lastShootTime + shootCooldown)
+        {
+            Shoot();
+        }
     }
+    private void Shoot()
+    {
+        lastShootTime = Time.time;
+
+        var bullet = BulletPool.staticInstance.Acquire(firePoint.position, Quaternion.identity);
+
+        if (bullet.TryGetComponent<Rigidbody>(out var rb))
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        if (shootSfx != null)
+            playerAudio.PlayOneShot(shootSfx);
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -99,6 +128,17 @@ public class PlayerController : MonoBehaviour
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             playerAudio.PlayOneShot(crashSfx);
 
+            if (!noDamage)
+            {
+                hp--;
+            }
+            Dead();
+        }
+
+        else if (collision.gameObject.CompareTag("Ghost"))
+        {
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+            playerAudio.PlayOneShot(crashSfx);
             if (!noDamage)
             {
                 hp--;

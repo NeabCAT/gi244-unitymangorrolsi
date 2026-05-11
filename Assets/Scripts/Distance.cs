@@ -39,6 +39,6 @@ public class Distance : MonoBehaviour
 
     public void Text()
     {
-        distanceTextEnd.text = "Distance : " + totalDistance.ToString("F1") + " M";
+        distanceTextEnd.text = "" + totalDistance.ToString("F1") + " M";
     }
 }

@@ -99,10 +99,17 @@ public class platform : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (!collision.gameObject.CompareTag("Player")) return;
+
+        foreach (ContactPoint contact in collision.contacts)
         {
-            spawnManager.spawnPos = playerController.transform.position + new Vector3(25, 2.5f, 0);
-            cam.transform.position = highCamPos;
+            if (contact.normal.y < -0.5f)
+            {
+                spawnManager.spawnPos = playerController.transform.position + new Vector3(25, 2.5f, 0);
+                cam.transform.position = highCamPos;
+
+                break;
+            }
         }
     }
 

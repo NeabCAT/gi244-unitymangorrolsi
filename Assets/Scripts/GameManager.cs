@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         textDistance.gameObject.SetActive(false);
         gameOverScreen.SetActive(true);
         textCoinScore.gameObject.SetActive(false);
-        textEndScore.text = $"Coin : {score}";
+        textEndScore.text = $"{score}";
         distance.Text();
         HighScore.Instance.Submit(score, distance.totalDistance);
         textBestCoin.text = $"{HighScore.Instance.BestCoins}";

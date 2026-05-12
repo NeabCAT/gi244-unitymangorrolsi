@@ -22,7 +22,6 @@ public class Boss : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
 
         currentHP = maxHP;
-        // ส่ง Event แจ้งเลือดเริ่มต้น
         onHPChanged?.Invoke(currentHP, maxHP);
     }
 
@@ -36,7 +35,6 @@ public class Boss : MonoBehaviour
             return;
         }
 
-        // ติดตามผู้เล่นแกน Y
         float targetY = playerTransform.position.y;
         float newY = Mathf.Lerp(transform.position.y, targetY, followSpeed * Time.deltaTime);
 

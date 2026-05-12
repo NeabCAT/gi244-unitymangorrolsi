@@ -24,36 +24,55 @@ public class FlipCame : MonoBehaviour
     {
         isFlipping = true;
 
-        // บอกก่อนหมุน
+        // นับเวลาก่อนหมุน
         for (int i = 3; i >= 1; i--)
         {
+            if (player.gameOver) { isFlipping = false; yield break; }
             player.countdownText.text = i.ToString();
             player.countdownText.gameObject.SetActive(true);
             yield return new WaitForSeconds(1f);
         }
+
+        if (player.gameOver) { isFlipping = false; yield break; }
         player.countdownText.text = "Flip!";
         yield return new WaitForSeconds(1f);
         player.countdownText.gameObject.SetActive(false);
 
         // หมุนกล้อง
+        if (player.gameOver) { isFlipping = false; yield break; }
         Quaternion startRot = cam.localRotation;
         cam.localRotation = Quaternion.Euler(0, 0, 180f);
 
-        yield return new WaitForSeconds(5f);
+        float elapsed = 0f;
+        while (elapsed < 5f)
+        {
+            if (player.gameOver)
+            {
+                cam.localRotation = startRot;
+                isFlipping = false;
+                yield break;
+            }
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
 
-        // บอกก่อนกลับปกติ
         for (int i = 3; i >= 1; i--)
         {
+            if (player.gameOver)
+            {
+                cam.localRotation = startRot;
+                isFlipping = false;
+                yield break;
+            }
             player.countdownText.text = i.ToString();
             player.countdownText.gameObject.SetActive(true);
             yield return new WaitForSeconds(1f);
         }
-        player.countdownText.gameObject.SetActive(false);
 
-        // กลับปกติ
+        // กล้องกลับปกติ
+        player.countdownText.gameObject.SetActive(false);
         if (cam != null)
             cam.localRotation = startRot;
-
         isFlipping = false;
     }
 }

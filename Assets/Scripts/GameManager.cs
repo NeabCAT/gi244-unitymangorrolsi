@@ -2,10 +2,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static History;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public History historyPanel;
 
     public TextMeshProUGUI textCoinScore;
     public TextMeshProUGUI textEndScore;
@@ -53,5 +55,7 @@ public class GameManager : MonoBehaviour
         HighScore.Instance.Submit(score, distance.totalDistance);
         textBestCoin.text = $"{HighScore.Instance.BestCoins}";
         textBestDistance.text = $"{HighScore.Instance.BestDistance:F1} M ";
+
+        historyPanel.AddRecord(score, distance.totalDistance);
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - Heart
   - Ghost
   - Boss
+  - Clock
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - UI
   - Coin
   - Heart
-  - 
+  - Clock
   - 
   - 
   - 

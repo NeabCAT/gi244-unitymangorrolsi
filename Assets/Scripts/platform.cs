@@ -118,4 +118,23 @@ public class platform : MonoBehaviour
         DeactivatePlatformState();
         RestartSystem(5f);
     }
+
+    public void OnBossSpawn()
+    {
+        if (loopRoutine != null)
+        {
+            StopCoroutine(loopRoutine);
+            loopRoutine = null;
+        }
+
+        if (platModel != null)
+        {
+            platModel.SetActive(false);
+        }
+    }
+
+    public void OnBossDefeated()
+    {
+        RestartSystem(2f);
+    }
 }

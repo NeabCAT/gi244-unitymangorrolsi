@@ -18,10 +18,26 @@ public class Bullet : MonoBehaviour
             other.CompareTag("Ground") ||
             other.CompareTag("Platformer")) return;
 
-
+        // Ghost
         if (other.CompareTag("Ghost"))
         {
             Destroy(other.gameObject);
+
+            BulletPool.staticInstance.Return(gameObject);
+
+            return;
+        }
+
+        // Boss
+        Boss boss = other.GetComponent<Boss>();
+
+        if (boss != null)
+        {
+            boss.TakeDamage(attackPoint);
+
+            BulletPool.staticInstance.Return(gameObject);
+
+            return;
         }
 
         BulletPool.staticInstance.Return(gameObject);

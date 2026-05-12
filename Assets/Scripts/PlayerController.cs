@@ -145,6 +145,25 @@ public class PlayerController : MonoBehaviour
             }
             Dead();
         }
+
+        else if (collision.gameObject.CompareTag("Boss"))
+        {
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+            playerAudio.PlayOneShot(crashSfx);
+
+            if (!noDamage)
+            {
+                hp -= 2;
+            }
+
+            Boss bossScript = collision.gameObject.GetComponent<Boss>();
+            if (bossScript != null)
+            {
+                bossScript.DieFromCollision();
+            }
+
+            Dead();
+        }
     }
 
     public void Dead()

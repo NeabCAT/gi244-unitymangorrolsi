@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class HealItem : MonoBehaviour
@@ -18,14 +17,9 @@ public class HealItem : MonoBehaviour
                 player.hp += healAmount;
                 if (player.hp > maxHP) player.hp = maxHP;
             }
-            StartCoroutine(PlaySoundThenReturn());
-        }
-    }
 
-    IEnumerator PlaySoundThenReturn()
-    {
-        pickupSound?.Play();
-        yield return new WaitForSeconds(pickupSound.clip.length);
-        ItemPool.Instance.Return(gameObject);
+            pickupSound.Play();
+            ItemPool.Instance.Return(gameObject);
+        }
     }
 }

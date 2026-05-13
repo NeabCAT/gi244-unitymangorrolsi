@@ -1,9 +1,8 @@
-using System.Collections;
 using UnityEngine;
 
 public class DisarmItem : MonoBehaviour
 {
-    public float disarmDuration = 5f;
+    public float disarmDuration = 5f; 
     public AudioSource pickupSound;
 
     private void OnTriggerEnter(Collider other)
@@ -15,14 +14,9 @@ public class DisarmItem : MonoBehaviour
             {
                 pc.ApplyDisarm(disarmDuration); 
             }
-            StartCoroutine(PlaySoundThenReturn());
-        }
-    }
 
-    IEnumerator PlaySoundThenReturn()
-    {
-        pickupSound?.Play();
-        yield return new WaitForSeconds(pickupSound.clip.length);
-        ItemPool.Instance.Return(gameObject);
+            pickupSound.Play();
+            ItemPool.Instance.Return(gameObject);
+        }
     }
 }

@@ -23,15 +23,9 @@ public class FlipCame : MonoBehaviour
             var player = other.GetComponent<PlayerController>();
             player.StartCoroutine(FlipEffect(player.cam.transform, player));
 
-            StartCoroutine(PlaySoundThenReturn());
+            pickupSound?.Play();
+            ItemPool.Instance.Return(gameObject);
         }
-    }
-
-    IEnumerator PlaySoundThenReturn()
-    {
-        pickupSound?.Play();
-        yield return new WaitForSeconds(pickupSound.clip.length);
-        ItemPool.Instance.Return(gameObject);
     }
 
     IEnumerator FlipEffect(Transform cam, PlayerController player)

@@ -1921,7 +1921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPool
   itemPrefabs:
-  - {fileID: 6790398651021180084, guid: da5e65bd51d814540b1672d751d6c621, type: 3}
+  - {fileID: 7053205290986796464, guid: 4e7654ed214af46418ca4bc51e1ed94b, type: 3}
   - {fileID: 7296207120833955999, guid: 7e85076eb2742844e95084d19c62d2c7, type: 3}
   - {fileID: 3580588768215937481, guid: 04780134f2c3172458ec13c9b82f7305, type: 3}
   - {fileID: 7655179845942896040, guid: c5382514c01ec9d41a9d630f2c4efe54, type: 3}

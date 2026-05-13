@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
@@ -16,14 +15,8 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.Instance.UpdateScore(coinValue);
-            StartCoroutine(PlaySoundThenReturn());
+            pickupSound?.Play();
+            CoinPool.staticInstance.Return(this.gameObject);
         }
-    }
-
-    IEnumerator PlaySoundThenReturn()
-    {
-        pickupSound?.Play();
-        yield return new WaitForSeconds(pickupSound.clip.length);
-        CoinPool.staticInstance.Return(this.gameObject);
     }
 }

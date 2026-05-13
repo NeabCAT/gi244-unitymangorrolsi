@@ -1760,8 +1760,8 @@ MonoBehaviour:
   - {fileID: 6790398651021180084, guid: f7b14eadad699b049aa1b85a091c6eb0, type: 3}
   - {fileID: 2684888832664485838, guid: aafa1f27f93442f4b8a79cb1adeec0e1, type: 3}
   - {fileID: 7655179845942896040, guid: c5382514c01ec9d41a9d630f2c4efe54, type: 3}
-  - {fileID: 2684888832664485838, guid: aafa1f27f93442f4b8a79cb1adeec0e1, type: 3}
-  initialPoolSizePerPrefab: 10
+  - {fileID: 7655179845942896040, guid: 82ac952a2394d514a83672664c122083, type: 3}
+  initialPoolSizePerPrefab: 15
 --- !u!1 &383521441 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100046, guid: f8abbdd178867d2419ba9feb6ff2cba0, type: 3}
@@ -1794,6 +1794,8 @@ MonoBehaviour:
   noDamage: 0
   cam: {fileID: 534669902}
   countdownText: {fileID: 2145545757}
+  disarmDuration: 5
+  playerRenderer: {fileID: 0}
 --- !u!65 &383521443
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3929,10 +3931,10 @@ MonoBehaviour:
   - {fileID: 5842114324701935107, guid: a0f4f1964968e794793346c5e8a07472, type: 3}
   - {fileID: 4027753661313239480, guid: 7cb9fa34b6a4852499a585f594174462, type: 3}
   - {fileID: 6516983141124577730, guid: 96ed938ed9b65084abaf4ff358a70b21, type: 3}
-  - {fileID: 1335197268401802557, guid: 0c0ad71e11338a542a32edb1b1e79fd5, type: 3}
+  - {fileID: 164944115398641836, guid: 053ad363b1ceec44ca0ee4977ecb2dfe, type: 3}
   - {fileID: 3680368260533895246, guid: 5bdd9d29d737af14da27ca72ec10c0ee, type: 3}
   - {fileID: 2696977698796831658, guid: 851743227b6816044809f36da1e79b8b, type: 3}
-  initialPoolSizePerPrefab: 5
+  initialPoolSizePerPrefab: 18
 --- !u!4 &896725687
 Transform:
   m_ObjectHideFlags: 0

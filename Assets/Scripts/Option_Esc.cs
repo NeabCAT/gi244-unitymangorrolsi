@@ -26,16 +26,23 @@ public class Option_Esc : MonoBehaviour
     public TextMeshProUGUI musicPercentText;
     public TextMeshProUGUI sfxPercentText;
 
+    public AudioClip click;
+    private AudioSource audioSource;
+
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+
         backButton.onClick.AddListener(() =>
         {
+            audioSource.PlayOneShot(click);
             Time.timeScale = 1f;
             uiESC.SetActive(false);
         });
 
         menuButton.onClick.AddListener(() =>
         {
+            audioSource.PlayOneShot(click);
             Time.timeScale = 1f;
             SceneManager.LoadScene("Main Menu");
         });

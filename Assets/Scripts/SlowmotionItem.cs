@@ -4,6 +4,8 @@ using TMPro;
 
 public class SlowmotionItem : MonoBehaviour
 {
+    public AudioSource pickupSound;
+
     public float slowTimeScale = 0.3f;
     public float duration = 5f;
     public float fadeOutTime = 0.5f;
@@ -35,7 +37,14 @@ public class SlowmotionItem : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        if (txt) txt.text = ""; 
-        Destroy(gameObject);
+        if (txt) txt.text = "";
+        StartCoroutine(PlaySoundThenReturn());
+    }
+
+    IEnumerator PlaySoundThenReturn()
+    {
+        pickupSound?.Play();
+        yield return new WaitForSeconds(pickupSound.clip.length);
+        ItemPool.Instance.Return(gameObject);
     }
 }

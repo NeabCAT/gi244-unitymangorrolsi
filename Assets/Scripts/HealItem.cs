@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
 public class HealItem : MonoBehaviour
 {
     public int healAmount = 1;
     public int maxHP = 3;
+
+    public AudioSource pickupSound;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,7 +18,14 @@ public class HealItem : MonoBehaviour
                 player.hp += healAmount;
                 if (player.hp > maxHP) player.hp = maxHP;
             }
-            ItemPool.Instance.Return(gameObject);
+            StartCoroutine(PlaySoundThenReturn());
         }
+    }
+
+    IEnumerator PlaySoundThenReturn()
+    {
+        pickupSound?.Play();
+        yield return new WaitForSeconds(pickupSound.clip.length);
+        ItemPool.Instance.Return(gameObject);
     }
 }

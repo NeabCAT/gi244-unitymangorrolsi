@@ -7,6 +7,12 @@ using UnityEngine.UIElements;
 public class FlipCame : MonoBehaviour
 {
     private static bool isFlipping = false;
+    public AudioSource pickupSound;
+
+    private void Awake()
+    {
+        pickupSound = GetComponent<AudioSource>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -16,8 +22,16 @@ public class FlipCame : MonoBehaviour
 
             var player = other.GetComponent<PlayerController>();
             player.StartCoroutine(FlipEffect(player.cam.transform, player));
-            ItemPool.Instance.Return(gameObject);
+
+            StartCoroutine(PlaySoundThenReturn());
         }
+    }
+
+    IEnumerator PlaySoundThenReturn()
+    {
+        pickupSound?.Play();
+        yield return new WaitForSeconds(pickupSound.clip.length);
+        ItemPool.Instance.Return(gameObject);
     }
 
     IEnumerator FlipEffect(Transform cam, PlayerController player)

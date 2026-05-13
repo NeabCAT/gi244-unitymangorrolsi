@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SpeedPower : MonoBehaviour
 {
+    public AudioSource pickupSound;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -10,8 +12,15 @@ public class SpeedPower : MonoBehaviour
             PlayerController player = other.GetComponent<PlayerController>();
 
             player.StartCoroutine(Boost(player));
-            ItemPool.Instance.Return(gameObject);
+            StartCoroutine(PlaySoundThenReturn());
         }
+    }
+
+    IEnumerator PlaySoundThenReturn()
+    {
+        pickupSound?.Play();
+        yield return new WaitForSeconds(pickupSound.clip.length);
+        ItemPool.Instance.Return(gameObject);
     }
 
     IEnumerator Boost(PlayerController player)

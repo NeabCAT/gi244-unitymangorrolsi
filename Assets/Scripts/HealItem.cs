@@ -7,6 +7,12 @@ public class HealItem : MonoBehaviour
 
     public AudioSource pickupSound;
 
+    private void Awake()
+    {
+        pickupSound = GetComponent<AudioSource>();
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -18,7 +24,11 @@ public class HealItem : MonoBehaviour
                 if (player.hp > maxHP) player.hp = maxHP;
             }
 
-            pickupSound.Play();
+            if (pickupSound.clip != null)
+            {
+                AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
+            }
+
             ItemPool.Instance.Return(gameObject);
         }
     }

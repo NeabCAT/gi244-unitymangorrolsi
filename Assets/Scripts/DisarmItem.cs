@@ -5,6 +5,12 @@ public class DisarmItem : MonoBehaviour
     public float disarmDuration = 5f; 
     public AudioSource pickupSound;
 
+    private void Awake()
+    {
+        pickupSound = GetComponent<AudioSource>();
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -15,7 +21,11 @@ public class DisarmItem : MonoBehaviour
                 pc.ApplyDisarm(disarmDuration); 
             }
 
-            pickupSound.Play();
+            if (pickupSound.clip != null)
+            {
+                AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
+            }
+
             ItemPool.Instance.Return(gameObject);
         }
     }

@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a666259f1e35954981a2a75a3b9edbc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5035
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a666259f1e35954981a2a75a3b9edbc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d75a0aebcea95304a9acbae59544dedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedPower
-  pickupSound: {fileID: 8209983671690597535}
+  pickUp: {fileID: 0}
 --- !u!114 &740843100528410632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -259,8 +259,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0

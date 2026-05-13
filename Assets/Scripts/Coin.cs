@@ -1,21 +1,28 @@
+using Unity.Android.Gradle;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
     public int coinValue = 1;
-    public AudioSource pickupSound;
+
+    public AudioClip pickupSound;
+    private AudioSource audioSource;
 
     private void Awake()
     {
-        pickupSound = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            if (pickupSound != null)
+            {
+                AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+            }
+
             GameManager.Instance.UpdateScore(coinValue);
-            pickupSound?.Play();
             CoinPool.staticInstance.Return(this.gameObject);
         }
     }

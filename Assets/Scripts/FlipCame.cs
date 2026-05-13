@@ -23,7 +23,11 @@ public class FlipCame : MonoBehaviour
             var player = other.GetComponent<PlayerController>();
             player.StartCoroutine(FlipEffect(player.cam.transform, player));
 
-            pickupSound?.Play();
+            if (pickupSound.clip != null)
+            {
+                AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
+            }
+
             ItemPool.Instance.Return(gameObject);
         }
     }

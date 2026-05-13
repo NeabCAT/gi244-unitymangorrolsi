@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coin
   coinValue: 1
-  pickupSound: {fileID: 197712163355141732}
+  pickupSound: {fileID: 8300000, guid: e2de45bca55f56f4c96a4165cd17c32f, type: 3}
 --- !u!114 &-404439043091107865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +161,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 201
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

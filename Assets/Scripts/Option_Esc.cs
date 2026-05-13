@@ -73,6 +73,7 @@ public class Option_Esc : MonoBehaviour
 
     public void Option()
     {
+        audioSource.PlayOneShot(click);
         uiOption.SetActive(true);
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 
 public class SlowmotionItem : MonoBehaviour
 {
@@ -10,7 +11,13 @@ public class SlowmotionItem : MonoBehaviour
 
     public AudioSource pickupSound;
 
-    void OnTriggerEnter(Collider other)
+    private void Awake()
+    {
+        pickupSound = GetComponent<AudioSource>();
+
+    }
+
+        void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) StartCoroutine(ApplySlowMo());
     }
@@ -39,7 +46,11 @@ public class SlowmotionItem : MonoBehaviour
         Time.timeScale = 1f;
         if (txt) txt.text = "";
 
-        pickupSound.Play();
+        if (pickupSound.clip != null)
+        {
+            AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
+        }
+
         ItemPool.Instance.Return(gameObject);
     }
 }

@@ -3,7 +3,13 @@ using UnityEngine;
 
 public class SpeedPower : MonoBehaviour
 {
-    public AudioSource pickUp;
+    public AudioSource pickupSound;
+
+    private void Awake()
+    {
+        pickupSound = GetComponent<AudioSource>();
+
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -12,7 +18,12 @@ public class SpeedPower : MonoBehaviour
             PlayerController player = other.GetComponent<PlayerController>();
 
             player.StartCoroutine(Boost(player));
-            pickUp.Play();
+
+            if (pickupSound.clip != null)
+            {
+                AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
+            }
+
             ItemPool.Instance.Return(gameObject);
         }
     }

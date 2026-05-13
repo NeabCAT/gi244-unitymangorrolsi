@@ -45,6 +45,11 @@ public class Boss : MonoBehaviour
     {
         currentHP -= damage;
 
+        if (playerController != null)
+        {
+            AudioSource.PlayClipAtPoint(playerController.bossAudio, transform.position);
+        }
+
         if (this != null)
         {
             onHPChanged?.Invoke(currentHP, maxHP);

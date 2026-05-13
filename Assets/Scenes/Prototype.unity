@@ -1878,6 +1878,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100046, guid: f8abbdd178867d2419ba9feb6ff2cba0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 383521448}
+    - targetCorrespondingSourceObject: {fileID: 100046, guid: f8abbdd178867d2419ba9feb6ff2cba0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 383521451}
   m_SourcePrefab: {fileID: 100100000, guid: f8abbdd178867d2419ba9feb6ff2cba0, type: 3}
 --- !u!4 &322614568 stripped
 Transform:
@@ -1960,7 +1963,9 @@ MonoBehaviour:
   dirtParticle: {fileID: 1120688231}
   jumpSfx: {fileID: 8300000, guid: 08ab7053d586c458db3774d33c141a4b, type: 3}
   crashSfx: {fileID: 8300000, guid: 4bcde6de2166e41e284ec46d8a01fb90, type: 3}
-  shootSfx: {fileID: 0}
+  ghotAudio: {fileID: 8300000, guid: 83d9186a7f6c31346adfa17ab0863014, type: 3}
+  bossAudio: {fileID: 8300000, guid: d0869a85eb065024789a46ace2fa942f, type: 3}
+  shootSfx: {fileID: 8300000, guid: 76b18d9196460d24dbd462d0389e6772, type: 3}
   firePoint: {fileID: 1410114248}
   shootCooldown: 0.3
   gameOver: 0
@@ -2232,6 +2237,103 @@ MonoBehaviour:
   distanceTextEnd: {fileID: 623936925}
   player: {fileID: 383521442}
   totalDistance: 0
+--- !u!82 &383521451
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383521441}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -8869608282108653491, guid: 55f7a4798ca0e0f47b65f56557f6ecbd, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &445524558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 465420, guid: f8abbdd178867d2419ba9feb6ff2cba0, type: 3}
@@ -2603,7 +2705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2421213111147647395, guid: f93176dd61e82114cb00a61867218df7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 2421213111147647395, guid: f93176dd61e82114cb00a61867218df7, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2760,7 +2862,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 96022bddeeac1b7438fe6b61587328d0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.12
+  m_Volume: 0.13
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8178,11 +8280,12 @@ MonoBehaviour:
   mainAuio: {fileID: 24100000, guid: 55f7a4798ca0e0f47b65f56557f6ecbd, type: 2}
   backButton: {fileID: 1492784052}
   menuButton: {fileID: 517171105}
+  HistoryButton: {fileID: 39581311}
   musicToggle: {fileID: 1747060107}
   sfxToggle: {fileID: 1118221604}
   musicPercentText: {fileID: 1120465926}
   sfxPercentText: {fileID: 895721940}
-  click: {fileID: 8300000, guid: 9ace396cb5e03164699e240d6aa449a2, type: 3}
+  click: {fileID: 8300000, guid: 088e588c952ebab47b715664653eba6e, type: 3}
 --- !u!82 &1865599898
 AudioSource:
   m_ObjectHideFlags: 0

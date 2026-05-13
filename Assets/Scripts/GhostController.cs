@@ -44,6 +44,8 @@ public class GhostController : MonoBehaviour
 
         if (other.CompareTag("Bullet"))
         {
+            var player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            if (player != null) AudioSource.PlayClipAtPoint(player.ghotAudio, transform.position);
             GhostPool.staticInstance.Return(gameObject);
         }
     }

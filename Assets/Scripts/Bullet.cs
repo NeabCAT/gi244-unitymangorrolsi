@@ -3,7 +3,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public int attackPoint = 1;
-
     private void OnEnable()
     {
         Physics.IgnoreCollision(
@@ -11,6 +10,7 @@ public class Bullet : MonoBehaviour
             GameObject.FindWithTag("Player").GetComponent<Collider>()
         );
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,7 +22,6 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("Ghost"))
         {
             Destroy(other.gameObject);
-
             BulletPool.staticInstance.Return(gameObject);
 
             return;
@@ -34,7 +33,6 @@ public class Bullet : MonoBehaviour
         if (boss != null)
         {
             boss.TakeDamage(attackPoint);
-
             BulletPool.staticInstance.Return(gameObject);
 
             return;
@@ -42,4 +40,6 @@ public class Bullet : MonoBehaviour
 
         BulletPool.staticInstance.Return(gameObject);
     }
+
+    
 }

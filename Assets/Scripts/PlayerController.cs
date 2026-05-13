@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip jumpSfx;
     public AudioClip crashSfx;
+    public AudioClip ghotAudio;
+    public AudioClip bossAudio;
 
     public AudioClip shootSfx;
     public Transform firePoint;          
@@ -162,6 +164,7 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             playerAudio.PlayOneShot(crashSfx);
+            playerAudio.PlayOneShot(ghotAudio);
             if (!noDamage)
             {
                 hp--;
@@ -173,6 +176,7 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             playerAudio.PlayOneShot(crashSfx);
+            playerAudio.PlayOneShot(bossAudio);
 
             if (!noDamage)
             {

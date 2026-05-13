@@ -17,6 +17,7 @@ public class Option_Esc : MonoBehaviour
 
     public Button backButton;
     public Button menuButton;
+    public Button HistoryButton;
 
     public Toggle musicToggle;
     public Toggle sfxToggle;
@@ -41,10 +42,12 @@ public class Option_Esc : MonoBehaviour
             uiESC.SetActive(false);
         });
 
-        menuButton.onClick.AddListener(() =>
-        {
-            StartCoroutine(PlaySoundAndLoad());
-        });
+        if (menuButton != null)
+            menuButton.onClick.AddListener(() => StartCoroutine(PlaySoundAndLoad()));
+
+        if (HistoryButton != null)
+            HistoryButton.onClick.AddListener(() => audioSource.PlayOneShot(click));
+
     }
 
     IEnumerator PlaySoundAndLoad()
@@ -60,6 +63,7 @@ public class Option_Esc : MonoBehaviour
 
         SceneManager.LoadScene("Main Menu");
     }
+
 
     void Start()
     {

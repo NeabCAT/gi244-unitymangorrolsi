@@ -1761,7 +1761,7 @@ MonoBehaviour:
   - {fileID: 2684888832664485838, guid: aafa1f27f93442f4b8a79cb1adeec0e1, type: 3}
   - {fileID: 7655179845942896040, guid: c5382514c01ec9d41a9d630f2c4efe54, type: 3}
   - {fileID: 2684888832664485838, guid: aafa1f27f93442f4b8a79cb1adeec0e1, type: 3}
-  initialPoolSizePerPrefab: 5
+  initialPoolSizePerPrefab: 10
 --- !u!1 &383521441 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100046, guid: f8abbdd178867d2419ba9feb6ff2cba0, type: 3}
@@ -3930,6 +3930,8 @@ MonoBehaviour:
   - {fileID: 4027753661313239480, guid: 7cb9fa34b6a4852499a585f594174462, type: 3}
   - {fileID: 6516983141124577730, guid: 96ed938ed9b65084abaf4ff358a70b21, type: 3}
   - {fileID: 1335197268401802557, guid: 0c0ad71e11338a542a32edb1b1e79fd5, type: 3}
+  - {fileID: 3680368260533895246, guid: 5bdd9d29d737af14da27ca72ec10c0ee, type: 3}
+  - {fileID: 2696977698796831658, guid: 851743227b6816044809f36da1e79b8b, type: 3}
   initialPoolSizePerPrefab: 5
 --- !u!4 &896725687
 Transform:
@@ -5190,7 +5192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnBoss
   distance: {fileID: 383521450}
   player: {fileID: 383521446}
-  bossPrefab: {fileID: 4027753661313239480, guid: e5be81d2afb1ff746b96c952d1538f92, type: 3}
+  bossPrefab: {fileID: 5562350281594333050, guid: 8fadc5391303d44418b029a3df32f5d8, type: 3}
   bossSpawnInterval: 1000
 --- !u!4 &1298355831
 Transform:

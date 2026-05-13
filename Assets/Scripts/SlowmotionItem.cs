@@ -11,12 +11,6 @@ public class SlowmotionItem : MonoBehaviour
 
     public AudioSource pickupSound;
 
-    private void Awake()
-    {
-        pickupSound = GetComponent<AudioSource>();
-
-    }
-
         void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) StartCoroutine(ApplySlowMo());

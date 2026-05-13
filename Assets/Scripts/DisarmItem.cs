@@ -3,13 +3,8 @@ using UnityEngine;
 public class DisarmItem : MonoBehaviour
 {
     public float disarmDuration = 5f; 
+
     public AudioSource pickupSound;
-
-    private void Awake()
-    {
-        pickupSound = GetComponent<AudioSource>();
-
-    }
 
     private void OnTriggerEnter(Collider other)
     {

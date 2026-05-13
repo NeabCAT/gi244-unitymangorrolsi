@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class FlipCame : MonoBehaviour
 {
     private static bool isFlipping = false;
+
     public AudioSource pickupSound;
 
     private void Awake()
@@ -36,7 +37,6 @@ public class FlipCame : MonoBehaviour
     {
         isFlipping = true;
 
-        // นับเวลาก่อนหมุน
         for (int i = 3; i >= 1; i--)
         {
             if (player.gameOver) { isFlipping = false; yield break; }
@@ -50,7 +50,6 @@ public class FlipCame : MonoBehaviour
         yield return new WaitForSeconds(1f);
         player.countdownText.gameObject.SetActive(false);
 
-        // หมุนกล้อง
         if (player.gameOver) { isFlipping = false; yield break; }
         Quaternion startRot = cam.localRotation;
         cam.localRotation = Quaternion.Euler(0, 0, 180f);
@@ -60,6 +59,7 @@ public class FlipCame : MonoBehaviour
         {
             if (player.gameOver)
             {
+                player.countdownText.gameObject.SetActive(false);
                 cam.localRotation = startRot;
                 isFlipping = false;
                 yield break;
@@ -72,6 +72,7 @@ public class FlipCame : MonoBehaviour
         {
             if (player.gameOver)
             {
+                player.countdownText.gameObject.SetActive(false);
                 cam.localRotation = startRot;
                 isFlipping = false;
                 yield break;
@@ -81,7 +82,6 @@ public class FlipCame : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
-        // กล้องกลับปกติ
         player.countdownText.gameObject.SetActive(false);
         if (cam != null)
             cam.localRotation = startRot;

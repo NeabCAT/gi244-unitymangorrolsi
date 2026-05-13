@@ -5,13 +5,7 @@ public class HealItem : MonoBehaviour
     public int healAmount = 1;
     public int maxHP = 3;
 
-    public AudioSource pickupSound;
-
-    private void Awake()
-    {
-        pickupSound = GetComponent<AudioSource>();
-
-    }
+    public AudioSource pickupSound; 
 
     private void OnTriggerEnter(Collider other)
     {

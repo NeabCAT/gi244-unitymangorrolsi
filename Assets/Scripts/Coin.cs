@@ -6,12 +6,6 @@ public class Coin : MonoBehaviour
     public int coinValue = 1;
 
     public AudioClip pickupSound;
-    private AudioSource audioSource;
-
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
 
     void OnTriggerEnter(Collider other)
     {

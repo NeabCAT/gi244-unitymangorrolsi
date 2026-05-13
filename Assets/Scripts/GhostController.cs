@@ -28,4 +28,23 @@ public class GhostController : MonoBehaviour
         float newY = Mathf.Lerp(transform.position.y, targetY, followSpeed * Time.deltaTime);
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            var pc = other.GetComponent<PlayerController>();
+            if (pc != null && !pc.noDamage)
+            {
+                pc.hp--;
+                pc.Dead();
+            }
+            GhostPool.staticInstance.Return(gameObject);
+        }
+
+        if (other.CompareTag("Bullet"))
+        {
+            GhostPool.staticInstance.Return(gameObject);
+        }
+    }
 }

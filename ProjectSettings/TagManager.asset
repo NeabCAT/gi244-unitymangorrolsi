@@ -12,6 +12,8 @@ TagManager:
   - Heart
   - Ghost
   - Boss
+  - Clock
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - UI
   - Coin
   - Heart
-  - 
+  - Clock
   - 
   - 
   - 

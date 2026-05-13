@@ -39,6 +39,13 @@ public class PlayerController : MonoBehaviour
     public GameObject cam;
     public TextMeshProUGUI countdownText;
 
+    public float disarmDuration;
+    public Renderer playerRenderer;
+
+    private bool isDisarmed = false;
+    private float disarmTimer = 0f;
+    private Color originalColor;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -55,6 +62,10 @@ public class PlayerController : MonoBehaviour
         shootAction = InputSystem.actions.FindAction("Attack");
         //dashAction = InputSystem.actions.FindAction("Sprint");
 
+        if (playerRenderer == null)
+            playerRenderer = GetComponentInChildren<Renderer>();
+
+        originalColor = playerRenderer.material.color;
 
         gameOver = false;
     }
@@ -62,6 +73,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (jumpAction.triggered && jumpCount < 2 && !gameOver)
         {
             rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
@@ -82,7 +94,16 @@ public class PlayerController : MonoBehaviour
         //    isDash = false;
         //}
 
-        if (shootAction.triggered && !gameOver && Time.time >= lastShootTime + shootCooldown)
+        if (isDisarmed)
+        {
+            disarmTimer -= Time.deltaTime;
+            if (disarmTimer <= 0f)
+            {
+                CureDisarm();
+            }
+        }
+
+        if (shootAction.triggered && !gameOver && !isDisarmed && Time.time >= lastShootTime + shootCooldown)
         {
             Shoot();
         }
@@ -106,6 +127,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (isDisarmed) CureDisarm();
+
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
@@ -166,6 +189,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ApplyDisarm(float duration)
+    {
+        isDisarmed = true;
+        disarmTimer = duration;
+
+        if (playerRenderer != null)
+            playerRenderer.material.color = Color.green;
+    }
+
+    private void CureDisarm()
+    {
+        isDisarmed = false;
+        disarmTimer = 0f;
+
+        if (playerRenderer != null)
+            playerRenderer.material.color = originalColor;
+    }
     public void Dead()
     {
         if (hp <= 0)

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -42,10 +43,22 @@ public class Option_Esc : MonoBehaviour
 
         menuButton.onClick.AddListener(() =>
         {
-            audioSource.PlayOneShot(click);
-            Time.timeScale = 1f;
-            SceneManager.LoadScene("Main Menu");
+            StartCoroutine(PlaySoundAndLoad());
         });
+    }
+
+    IEnumerator PlaySoundAndLoad()
+    {
+        if (audioSource != null && click != null)
+        {
+            audioSource.PlayOneShot(click);
+        }
+
+        Time.timeScale = 1f;
+
+        yield return new WaitForSecondsRealtime(0.25f);
+
+        SceneManager.LoadScene("Main Menu");
     }
 
     void Start()

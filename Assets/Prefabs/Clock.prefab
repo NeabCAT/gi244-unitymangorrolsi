@@ -155,10 +155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13e5ccfa3ef0da47a34d4e295f2d74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlowmotionItem
-  pickupSound: {fileID: -675848411507597691}
   slowTimeScale: 0.3
   duration: 5
   fadeOutTime: 0.5
+  pickupSound: {fileID: -675848411507597691}
 --- !u!114 &1592752678261645581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8869608282108653491, guid: 55f7a4798ca0e0f47b65f56557f6ecbd, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 5084125ee90e12746a06507fbc7fca2e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

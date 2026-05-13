@@ -18,6 +18,11 @@ public class SlowmotionItem : MonoBehaviour
 
     IEnumerator ApplySlowMo()
     {
+        if (pickupSound != null && pickupSound.clip != null)
+        {
+            AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
+        }
+
         GetComponent<Renderer>().enabled = GetComponent<Collider>().enabled = false;
 
         var txt = GameObject.Find("Timenumbertext")?.GetComponent<TextMeshProUGUI>();
@@ -39,11 +44,6 @@ public class SlowmotionItem : MonoBehaviour
 
         Time.timeScale = 1f;
         if (txt) txt.text = "";
-
-        if (pickupSound.clip != null)
-        {
-            AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
-        }
 
         ItemPool.Instance.Return(gameObject);
     }

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -15,6 +16,15 @@ public class Option_Esc : MonoBehaviour
 
     public Button backButton;
     public Button menuButton;
+
+    public Toggle musicToggle;
+    public Toggle sfxToggle;
+
+    float lastMusicVolume;
+    float lastSFXVolume;
+
+    public TextMeshProUGUI musicPercentText;
+    public TextMeshProUGUI sfxPercentText;
 
     private void Awake()
     {
@@ -44,6 +54,9 @@ public class Option_Esc : MonoBehaviour
 
         mainAuio.SetFloat("MusicVol", musicdB);
         mainAuio.SetFloat("SfxVol", sfxdB);
+
+        musicPercentText.text = Mathf.RoundToInt(music * 100f) + "%";
+        sfxPercentText.text = Mathf.RoundToInt(sfx * 100f) + "%";
     }
 
     void Update()
@@ -64,6 +77,7 @@ public class Option_Esc : MonoBehaviour
         mainAuio.SetFloat("MusicVol", dB);
 
         PlayerPrefs.SetFloat("MusicVol", value);
+        musicPercentText.text = Mathf.RoundToInt(value * 100f) + "%";
     }
     public void ChangeSFXVolume()
     {
@@ -73,6 +87,7 @@ public class Option_Esc : MonoBehaviour
         mainAuio.SetFloat("SfxVol", dB);
 
         PlayerPrefs.SetFloat("SfxVol", value);
+        sfxPercentText.text = Mathf.RoundToInt(value * 100f) + "%";
     }
 
     public void ESCOpen()
@@ -82,6 +97,41 @@ public class Option_Esc : MonoBehaviour
             Time.timeScale = 0f;
             uiESC.SetActive(true);
         }
+    }
 
+    public void ToggleMusic()
+    {
+        if (musicToggle.isOn)
+        {
+            lastMusicVolume = MusicVol.value;
+            musicPercentText.text = "0%";
+
+            MusicVol.SetValueWithoutNotify(0);
+            mainAuio.SetFloat("MusicVol", -80f);
+        }
+        else
+        {
+            MusicVol.SetValueWithoutNotify(lastMusicVolume);
+
+            ChangeMusicVolume();
+        }
+    }
+
+    public void Togglesfx()
+    {
+        if (sfxToggle.isOn)
+        {
+            lastSFXVolume = SfxVol.value;
+            sfxPercentText.text = "0%";
+
+            SfxVol.SetValueWithoutNotify(0);
+            mainAuio.SetFloat("SfxVol", -80f);
+        }
+        else
+        {
+            SfxVol.SetValueWithoutNotify(lastSFXVolume);
+
+            ChangeSFXVolume();
+        }
     }
 }

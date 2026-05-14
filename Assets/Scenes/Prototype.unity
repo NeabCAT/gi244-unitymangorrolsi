@@ -2460,9 +2460,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6058566941689774040, guid: ea741d7772fdc56489707ad3ff6599e7, type: 3}
+      propertyPath: goSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c46af39ae7322ed4daccff526bfcdcc1, type: 3}
+    - target: {fileID: 6058566941689774040, guid: ea741d7772fdc56489707ad3ff6599e7, type: 3}
+      propertyPath: countSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 44706135d9492be44a8c2646e6a0c096, type: 3}
     - target: {fileID: 6116879797764155793, guid: ea741d7772fdc56489707ad3ff6599e7, type: 3}
       propertyPath: m_Name
       value: CountdownText (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6773203431949160895, guid: ea741d7772fdc56489707ad3ff6599e7, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
     private bool isDisarmed = false;
     private float disarmTimer = 0f;
     private Color originalColor;
+    public TextMeshProUGUI bulletCountText;
+
 
     void Awake()
     {
@@ -70,6 +72,8 @@ public class PlayerController : MonoBehaviour
         originalColor = playerRenderer.material.color;
 
         gameOver = false;
+        UpdateBulletUI();
+
     }
 
     // Update is called once per frame
@@ -112,15 +116,19 @@ public class PlayerController : MonoBehaviour
     }
     private void Shoot()
     {
-        lastShootTime = Time.time;
 
         var bullet = BulletPool.staticInstance.Acquire(firePoint.position, Quaternion.identity);
+        if (bullet == null) return;
+
+        lastShootTime = Time.time;
 
         if (bullet.TryGetComponent<Rigidbody>(out var rb))
         {
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
+
+        UpdateBulletUI();
 
         if (shootSfx != null)
             playerAudio.PlayOneShot(shootSfx);
@@ -143,7 +151,7 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.CompareTag("Platformer"))
         {
             isOnGround = true;
-            jumpCount = 1;
+            jumpCount = 0;
             dirtParticle.Play();
         }
 
@@ -210,6 +218,13 @@ public class PlayerController : MonoBehaviour
         if (playerRenderer != null)
             playerRenderer.material.color = originalColor;
     }
+
+    public void UpdateBulletUI()
+    {
+        if (bulletCountText != null)
+            bulletCountText.text = "Bullet : " + BulletPool.staticInstance.currentBullets;
+    }
+
     public void Dead()
     {
         if (hp <= 0)

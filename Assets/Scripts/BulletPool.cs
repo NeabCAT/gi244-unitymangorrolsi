@@ -9,10 +9,13 @@ public class BulletPool : MonoBehaviour
 
     private readonly List<GameObject> bulletPool = new();
     public static BulletPool staticInstance;
+    public int currentBullets; 
+
 
     private void Awake()
     {
         staticInstance = this;
+        currentBullets = initialPoolSize;
     }
 
     private IEnumerator Start()
@@ -33,6 +36,7 @@ public class BulletPool : MonoBehaviour
 
     public GameObject Acquire(Vector3 spawnPosition, Quaternion spawnRotation)
     {
+        if (currentBullets <= 0) return null;
         if (bulletPool.Count == 0)
             CreateNewBullet();
 
@@ -43,6 +47,7 @@ public class BulletPool : MonoBehaviour
         go.transform.rotation = spawnRotation;
 
         go.SetActive(true);
+        currentBullets--;
         return go;
     }
 
@@ -50,5 +55,9 @@ public class BulletPool : MonoBehaviour
     {
         bullet.SetActive(false);
         bulletPool.Add(bullet);
+        currentBullets++;
+
+        FindFirstObjectByType<PlayerController>()?.UpdateBulletUI();
+
     }
 }

@@ -224,4 +224,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
   followSpeed: 2
-  maxHP: 15
+  maxHP: 8

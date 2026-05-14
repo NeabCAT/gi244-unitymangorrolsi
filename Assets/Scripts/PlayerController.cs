@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isDisarmed) CureDisarm();
+        
 
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
             //explosionParticle.Play();
+            if (isDisarmed) CureDisarm();
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             playerAudio.PlayOneShot(crashSfx);
 
@@ -170,6 +171,7 @@ public class PlayerController : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("Ghost"))
         {
+            if (isDisarmed) CureDisarm();
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             playerAudio.PlayOneShot(crashSfx);
             playerAudio.PlayOneShot(ghotAudio);
@@ -182,6 +184,7 @@ public class PlayerController : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("Boss"))
         {
+            if (isDisarmed) CureDisarm();
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             playerAudio.PlayOneShot(crashSfx);
             playerAudio.PlayOneShot(bossAudio);

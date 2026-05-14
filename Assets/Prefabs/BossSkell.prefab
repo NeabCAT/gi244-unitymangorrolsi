@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3deb3c3f12d4b4c47afac0cc51e7dd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveLeft
-  speed: 2.5
+  speed: 1
 --- !u!114 &8703275607889316016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,5 +223,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329396f667fe2d74e998a7cc0e16c9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
-  followSpeed: 2
-  maxHP: 8
+  followSpeed: 1
+  maxHP: 5

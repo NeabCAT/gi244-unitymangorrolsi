@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ababcda7daf0774439ac0e722e56f541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisarmItem
-  disarmDuration: 8
+  disarmDuration: 4
   pickupSound: {fileID: -4844611732749326496}
 --- !u!82 &-4844611732749326496
 AudioSource:

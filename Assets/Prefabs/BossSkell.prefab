@@ -196,8 +196,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.991937, y: 4.06833, z: 7.621585}
-  m_Center: {x: -1.5952487, y: 1.5341635, z: 0.023373786}
+  m_Size: {x: 8.991937, y: 12.114459, z: 7.621585}
+  m_Center: {x: -1.5952487, y: 0.30770117, z: 0.023373786}
 --- !u!114 &591022791750963803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,4 +224,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
   followSpeed: 1
-  maxHP: 5
+  maxHP: 8
